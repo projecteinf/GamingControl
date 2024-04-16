@@ -13,3 +13,8 @@ generator client {
   provider = "prisma-client-js"
 }
  
+model Jugador {
+  email String @id
+  createdAt DateTime @default(now())
+  nom String
+}
