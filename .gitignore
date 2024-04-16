@@ -7,23 +7,23 @@ CLIENT/node_modules/
 
 
 # Compiled output
-CLIENT/app/dist
-CLIENT/app/tmp
-CLIENT/app/out-tsc
-CLIENT/app/bazel-out
+CLIENT/dist
+CLIENT/tmp
+CLIENT/out-tsc
+CLIENT/bazel-out
 
 # Node
-CLIENT/app/npm-debug.log
-CLIENT/app/yarn-error.log
+CLIENT/npm-debug.log
+CLIENT/yarn-error.log
 
 # IDEs and editors
-CLIENT/app/.idea/
-CLIENT/app/.project
-CLIENT/app/.classpath
-CLIENT/app/.c9/
-CLIENT/app/*.launch
-CLIENT/app/.settings/
-CLIENT/app/*.sublime-workspace
+CLIENT/.idea/
+CLIENT/.project
+CLIENT/.classpath
+CLIENT/.c9/
+CLIENT/*.launch
+CLIENT/.settings/
+CLIENT/*.sublime-workspace
 
 # Visual Studio Code
 .vscode/*
@@ -34,13 +34,13 @@ CLIENT/app/*.sublime-workspace
 .history/*
 
 # Miscellaneous
-CLIENT/app/.angular/cache
-CLIENT/app/.sass-cache/
-CLIENT/app/connect.lock
-CLIENT/app/coverage
-CLIENT/app/libpeerconnection.log
-CLIENT/app/testem.log
-CLIENT/app/typings
+CLIENT/.angular/cache
+CLIENT/.sass-cache/
+CLIENT/connect.lock
+CLIENT/coverage
+CLIENT/libpeerconnection.log
+CLIENT/testem.log
+CLIENT/typings
 
 # System files
 .DS_Store
