@@ -7,6 +7,7 @@ npm i -D --save-exact typescript @types/node ts-node ts-node-dev cross-env
 npx tsc --init
 npm i @graphql-tools/schema graphql
 npm i --save-exact graphql-yoga
+npm i -D --save-exact prisma @prisma/client
 
 mkdir src
 echo 'console.log("Hello World!")' > src/main.ts
@@ -58,3 +59,5 @@ main()
 " > src/main.ts
 
 
+cd src
+npx prisma init
