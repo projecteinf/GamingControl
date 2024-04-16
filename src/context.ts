@@ -1,5 +1,11 @@
-export type GraphQLContext = {}
+import { PrismaClient } from '@prisma/client'
  
-export async function createContext(): Promise<GraphQLContext> {
-  return {}
+const prisma = new PrismaClient()
+ 
+export type GraphQLContext = {
+  prisma: PrismaClient
+}
+ 
+export function createContext(): GraphQLContext {
+  return { prisma }
 }
