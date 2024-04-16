@@ -74,8 +74,11 @@ const resolvers = {
           nom: args.nom
         }
       }).catch((err: unknown) => {
-        return Promise.reject(err)
-      })
+        const errorCodi = (err as PrismaClientKnownRequestError).code
+        return Promise.reject(
+            new GraphQLError(`Error code '${errorCodi}'.`))
+      }
+      )
 
       return nouJugador
     }    
