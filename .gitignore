@@ -3,7 +3,7 @@ API/node_modules
 API/src/prisma/migrations
 API/src/prisma/dev.db
 API/src/prisma/dev.db-journal
-CLIENT/app/node_modules
+CLIENT/node_modules
 # See http://help.github.com/ignore-files/ for more about ignoring files.
 
 # Compiled output
