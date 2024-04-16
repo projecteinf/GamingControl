@@ -6,6 +6,8 @@ npm init -y
 npm i -D --save-exact typescript @types/node ts-node ts-node-dev cross-env
 npx tsc --init
 npm i @graphql-tools/schema graphql
+npm i --save-exact graphql-yoga
+
 mkdir src
 echo 'console.log("Hello World!")' > src/main.ts
 
