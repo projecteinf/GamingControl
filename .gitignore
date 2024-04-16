@@ -3,4 +3,45 @@ API/node_modules
 API/src/prisma/migrations
 API/src/prisma/dev.db
 API/src/prisma/dev.db-journal
-CLIENT/node_modules
+CLIENT/app/node_modules
+# See http://help.github.com/ignore-files/ for more about ignoring files.
+
+# Compiled output
+CLEINT/app/dist
+CLIENT/app/tmp
+CLIENT/app/out-tsc
+CLIENT/app/bazel-out
+
+# Node
+CLIENT/app/npm-debug.log
+CLIENT/app/yarn-error.log
+
+# IDEs and editors
+CLIENT/app/.idea/
+CLIENT/app/.project
+CLIENT/app/.classpath
+CLIENT/app/.c9/
+CLIENT/app/*.launch
+CLIENT/app/.settings/
+CLIENT/app/*.sublime-workspace
+
+# Visual Studio Code
+.vscode/*
+!.vscode/settings.json
+!.vscode/tasks.json
+!.vscode/launch.json
+!.vscode/extensions.json
+.history/*
+
+# Miscellaneous
+CLIENT/app/.angular/cache
+CLIENT/app/.sass-cache/
+CLIENT/app/connect.lock
+CLIENT/app/coverage
+CLIENT/app/libpeerconnection.log
+CLIENT/app/testem.log
+CLIENT/app/typings
+
+# System files
+.DS_Store
+Thumbs.db
