@@ -1,4 +1,4 @@
-export interface Jugador {
+export interface IJugador {
     email: string;
     password: string;
     nom: string;
