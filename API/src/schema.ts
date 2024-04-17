@@ -8,6 +8,7 @@ const typeDefinitions =  `
   type Jugador {
     email: ID!
     nom: String!
+    password: String!
   }
   
   type Query {
@@ -15,7 +16,7 @@ const typeDefinitions =  `
   }
    
   type Mutation {
-    postJugador(email: String!, nom: String!): Jugador!
+    postJugador(email: String!, nom: String!, password: String): Jugador!
   }
 `
 
@@ -64,14 +65,15 @@ const resolvers = {
   Mutation: {
     async postJugador(
       parent: unknown,
-      args: { email: string; nom: string },
+      args: { email: string; nom: string, password: string},
       context: GraphQLContext
     ) 
     {
       const nouJugador = await context.prisma.jugador.create({
         data: {
           email: args.email,
-          nom: args.nom
+          nom: args.nom,
+          password: args.password
         }
       }).catch((err: unknown) => {
         const errorCodi = (err as PrismaClientKnownRequestError).code

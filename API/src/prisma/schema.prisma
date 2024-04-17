@@ -14,7 +14,8 @@ generator client {
 }
  
 model Jugador {
-  email String @id /* Defineix com a clau primària el camp */
+  email String @id // Defineix com a clau primària el camp 
   createdAt DateTime @default(now())
   nom String
+  password String  @default("Password")
 }
