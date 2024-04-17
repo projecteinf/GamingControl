@@ -1,10 +1,11 @@
 import { Component } from '@angular/core';
 import { Jugador } from '../../_model/entitats/implementations/jugador';
+import { FormsModule } from '@angular/forms';
 
 @Component({
   selector: 'app-jugadors',
   standalone: true,
-  imports: [],
+  imports: [FormsModule],
   templateUrl: './jugadors.component.html',
   styleUrl: './jugadors.component.css'
 })
