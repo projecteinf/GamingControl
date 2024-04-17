@@ -1,4 +1,5 @@
 import { Component } from '@angular/core';
+import { Jugador } from '../../_model/entitats/implementations/jugador';
 
 @Component({
   selector: 'app-jugadors',
@@ -8,5 +9,10 @@ import { Component } from '@angular/core';
   styleUrl: './jugadors.component.css'
 })
 export class JugadorsComponent {
+  jugador: Jugador;
+
+  constructor() {
+    this.jugador = new Jugador('email', 'password', 'nom');
+  }
 
 }
