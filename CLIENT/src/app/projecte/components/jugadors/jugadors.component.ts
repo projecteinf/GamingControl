@@ -1,6 +1,11 @@
 import { Component } from '@angular/core';
 import { Jugador } from '../../_model/entitats/implementations/jugador';
 import { FormsModule } from '@angular/forms';
+import { GraphqlService } from '../../services/api.graphql';
+import { Observable } from 'rxjs';
+
+
+
 
 @Component({
   selector: 'app-jugadors',
@@ -10,10 +15,22 @@ import { FormsModule } from '@angular/forms';
   styleUrl: './jugadors.component.css'
 })
 export class JugadorsComponent {
-  jugador: Jugador;
+    jugador: Jugador;
+    jugadors: Jugador[] = [];
+    jugadorData$?: Observable<any>;
+    
 
-  constructor() {
-    this.jugador = new Jugador('email', 'password', 'nom');
+    ngOnInit(): void {
+      this.jugadorData$ = this.graphqlService.query();
+    }
+
+    constructor(private graphqlService: GraphqlService) {
+      console.log("JugadorsComponent constructor");
+      this.jugador = new Jugador("nom", "email", "password");
+      this.jugadorData$?.subscribe(data => {
+        console.log(data);
+      });
+      
+    }
+
   }
-
-}
