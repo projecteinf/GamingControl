@@ -1,3 +1,5 @@
+[Creating and Using Angular Services: Best Practices and Examples](https://angulardive.com/blog/creating-and-using-angular-services-best-practices-and-examples/)
+
 # CLIENT
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
