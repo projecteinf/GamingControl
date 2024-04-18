@@ -4,9 +4,12 @@
 // Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
 // Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
 
+
+// DATABASE_CONNECTION_MSSQL="sqlserver://localhost:1433;database=DATABASE;user={SA};password={Passw0rd!};encrypt=true;trustServerCertificate=true"
 datasource db {
-  provider = "sqlite"
-  url      = "file:./dev.db"
+  provider = "sqlserver"
+  // url      = "file:./dev.db"
+  url = env("DATABASE_CONNECTION_MSSQL")
 }
  
 generator client {
