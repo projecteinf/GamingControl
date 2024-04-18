@@ -20,11 +20,11 @@ export async function up() {
     await prisma.$connect();
 
     // Afegim un registre a la taula Jugador
-    for (let i = 0; i < 100; i++) {
+    for (let i = 0; i < 10000; i++) {
       const nouJugador = await prisma.jugador.create({
         data: {
-          nom: `Jugador A ${i}`,
-          email: `Email A ${i}`,
+          nom: `Jugador N ${i}`,
+          email: `Email N ${i}`,
       }});
       console.log('Registre afegit:', nouJugador);
     }
