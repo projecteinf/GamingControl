@@ -7,10 +7,11 @@ import { Observable } from 'rxjs';
 })
 
 export class GraphqlService {
+    private apiUrl = 'http://localhost:4000/graphql';
+
     constructor(private http: HttpClient) {}
 
-    query(): Observable<any> {
-        const query:string = "query { Jugador { nom email password }} ";          
-        return this.http.post('/graphql', { query });
+    query(query:string): Observable<any> {          
+        return this.http.post(this.apiUrl, { query });
     }
 }

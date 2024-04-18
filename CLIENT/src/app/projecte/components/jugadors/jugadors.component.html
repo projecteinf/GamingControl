@@ -1,8 +1,15 @@
 <h1>Jugadors</h1>
 <p>
-    Jugador nom: {{this.jugador.nom}}
+    Jugador nom: {{this.jugador?.nom}}
     <label>Nom:
-        <input [(ngModel)]="this.jugador.nom" placeholder="nom" />
+        <input [(ngModel)]="this.nouJugador.nom" placeholder="nom" />
     </label>
 </p>
+<table class="list-group">
+    <tr><th>Nom</th><th>Email</th></tr>
+    <tr *ngFor="let jugador of this.jugadors">
+        <td>{{jugador.nom}}</td>
+        <td>{{jugador.email}}</td>
+    </tr>
+</table>
 

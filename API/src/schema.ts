@@ -60,7 +60,10 @@ const resolvers = {
         skip: args.skip,
         take: take
       })
-    },
+      .catch((err: unknown) => {
+        const errorCodi = (err as PrismaClientKnownRequestError).code
+        return Promise.reject(
+            new GraphQLError(`Error code '${errorCodi}'.`))})}
   },
   Mutation: {
     async postJugador(
@@ -80,7 +83,7 @@ const resolvers = {
         return Promise.reject(
             new GraphQLError(`Error code '${errorCodi}'.`))
       }
-      )
+    )
 
       return nouJugador
     }    
