@@ -10,7 +10,11 @@ export function createContext(): GraphQLContext {
   return { prisma }
 }
 
-async function main() {
+
+export async function up() {
+  // Connectem amb la base de dades
+  await prisma.$connect();
+  
   try {
     // Connectem amb la base de dades
     await prisma.$connect();
@@ -19,14 +23,18 @@ async function main() {
     for (let i = 0; i < 100; i++) {
       const nouJugador = await prisma.jugador.create({
         data: {
-          nom: `Jugador ${i}`,
-          email: `Email ${i}`,
-      },
-    });
-  }} catch (error) { console.error('Error afegint registre:', error);  } finally {
-    // Tanquem la connexió amb la base de dades
-    await prisma.$disconnect();
+          nom: `Jugador A ${i}`,
+          email: `Email A ${i}`,
+      }});
+      console.log('Registre afegit:', nouJugador);
+    }
+  } 
+  catch (error) { 
+    console.error('Error afegint registre:', error);  
+  } 
+  finally 
+  {
+      // Tanquem la connexió amb la base de dades
+      await prisma.$disconnect();
   }
 }
-
-main();
