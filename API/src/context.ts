@@ -16,18 +16,14 @@ async function main() {
     await prisma.$connect();
 
     // Afegim un registre a la taula Jugador
-    const nouJugador = await prisma.jugador.create({
-      data: {
-        nom: 'Nom del Jugador',
-        email: 'exemple@example.com',
-        // Altres camps que vulguis afegir
+    for (let i = 0; i < 100; i++) {
+      const nouJugador = await prisma.jugador.create({
+        data: {
+          nom: `Jugador ${i}`,
+          email: `Email ${i}`,
       },
     });
-
-    console.log('Registre afegit:', nouJugador);
-  } catch (error) {
-    console.error('Error afegint registre:', error);
-  } finally {
+  }} catch (error) { console.error('Error afegint registre:', error);  } finally {
     // Tanquem la connexió amb la base de dades
     await prisma.$disconnect();
   }
