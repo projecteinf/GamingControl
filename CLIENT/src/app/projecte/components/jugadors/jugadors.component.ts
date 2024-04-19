@@ -27,16 +27,17 @@ export class JugadorsComponent {
       const query:string = "query { Jugador { nom email password }} ";
       const observer: Observer<any> = {
         next: (response: any) => {
-          this.jugadors = response.data.Jugador;
+          if (response.data != null) this.jugadors = response.data.Jugador;
+          else {
+            console.error('An error occurred:', response.errors[0].message);
+            throwError(() => new Error(response.errors));
+          }
         },
         error: (error: any) => {
-          // Handle the error here
           console.error('An error occurred:', error);
-          // Optionally, re-throw the error or return a default value
           throwError(()=> new Error('Something went wrong'));
         },
         complete: () => {
-          // Handle a successful completion here
           console.log('Complete');
         }
       };

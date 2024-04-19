@@ -51,8 +51,8 @@ const resolvers = {
  
       const take = applyTakeConstraints({
         min: 1,
-        max: 30000,
-        value: args.take ?? 30000
+        max: 300000,
+        value: args.take ?? 300000
       })
 
       return context.prisma.jugador.findMany({
