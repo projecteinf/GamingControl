@@ -38,3 +38,25 @@ export async function up() {
       await prisma.$disconnect();
   }
 }
+
+
+async function main() {
+  try {
+    // Connectem amb la base de dades
+    await prisma.$connect();
+
+    // Afegim un registre a la taula Jugador
+    for (let i = 0; i < 100000; i++) {
+      const nouJugador = await prisma.jugador.create({
+        data: {
+          nom: `Jugador AA ${i}`,
+          email: `Email AA ${i}`,
+      },
+    });
+  }} catch (error) { console.error('Error afegint registre:', error);  } finally {
+    // Tanquem la connexió amb la base de dades
+    await prisma.$disconnect();
+  }
+}
+
+main();
