@@ -7,9 +7,14 @@
 </p>
 <table class="list-group">
     <tr><th>Nom</th><th>Email</th></tr>
-    <tr *ngFor="let jugador of this.jugadors">
-        <td>{{jugador.nom}}</td>
-        <td>{{jugador.email}}</td>
-    </tr>
+
+    @for (jugador of jugadors; track jugador; let  i = $index) {
+        <tr>
+            <td>{{i}}</td>
+            <td>{{jugador.nom}}</td>
+            <td>{{jugador.email}}</td>
+        </tr>
+    }
+     
 </table>
 
