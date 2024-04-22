@@ -48,3 +48,8 @@ use MusicaBD;
 select TABLE_NAME, COLUMN_NAME, CONSTRAINT_NAME from information_schema.key_column_usage where constraint_name like 'FK_%'
 go
 
+## Canviar nom base de dades
+```sql
+alter database [DATABASE] modify name=GamingWithData
+go
+```
