@@ -1,4 +1,4 @@
-<h1>Jugadors</h1>
+<h1>Gestió de jugadors</h1>
 <form (submit)="onSubmit()">
     <p>
         <label>Email:
@@ -12,12 +12,12 @@
     </p>
     <p>
         <label>Password:
-            <input [(ngModel)]="this.nouJugador.password" placeholder="password" [ngModelOptions]="{standalone: true}"/>
+            <input [(ngModel)]="this.nouJugador.password" type="password" [ngModelOptions]="{standalone: true}"/>
         </label>
     </p>
     <p>
         <label>Password:
-            <input [(ngModel)]="password" placeholder="password" [ngModelOptions]="{standalone: true}"/>
+            <input [(ngModel)]="password" type="password" [ngModelOptions]="{standalone: true}"/>
         </label>
     </p>
     <button type="submit">Afegir</button>
