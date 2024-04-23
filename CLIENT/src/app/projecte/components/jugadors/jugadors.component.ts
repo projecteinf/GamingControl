@@ -17,6 +17,7 @@ import { CommonModule } from '@angular/common';
 })
 export class JugadorsComponent {
     nouJugador: Jugador = new Jugador();
+    password: string = '';
     jugador?: Jugador;
     jugadors: Jugador[] = [];
     
@@ -52,5 +53,8 @@ export class JugadorsComponent {
       ).subscribe(observer);
     }
 
+    onSubmit(): void {
+      
+    }
 
   }

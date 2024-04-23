@@ -1,3 +1,8 @@
+
 table { width: 100%;}
-th { background-color: #4CAF50; color: white; }
+th { background-color: #5f6f9255; }
 th, td { text-align: left; padding: 8px; }
+form { display: flex; flex-direction: column; align-items: stretch; column-gap: 100px;}
+label,input,button { font-size: 1.2em; font-weight: bold;}
+input { position:absolute; left: 6em;}
+button { margin: 1em; padding: 1em; background-color: #5f6f9255; width: 5em; margin-left: 20em;}

@@ -1,10 +1,27 @@
 <h1>Jugadors</h1>
-<p>
-    Jugador nom: {{this.jugador?.nom}}
-    <label>Nom:
-        <input [(ngModel)]="this.nouJugador.nom" placeholder="nom" />
-    </label>
-</p>
+<form (submit)="onSubmit()">
+    <p>
+        <label>Email:
+            <input [(ngModel)]="this.nouJugador.email" placeholder="email" [ngModelOptions]="{standalone: true}"/>
+        </label>
+    </p>
+    <p>
+        <label>Nom:
+            <input [(ngModel)]="this.nouJugador.nom" placeholder="nom" [ngModelOptions]="{standalone: true}"/>
+        </label>
+    </p>
+    <p>
+        <label>Password:
+            <input [(ngModel)]="this.nouJugador.password" placeholder="password" [ngModelOptions]="{standalone: true}"/>
+        </label>
+    </p>
+    <p>
+        <label>Password:
+            <input [(ngModel)]="password" placeholder="password" [ngModelOptions]="{standalone: true}"/>
+        </label>
+    </p>
+    <button type="submit">Afegir</button>
+</form>
 <table class="list-group">
     <tr><th>Nom</th><th>Email</th></tr>
 
