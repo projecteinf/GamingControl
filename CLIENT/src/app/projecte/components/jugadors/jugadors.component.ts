@@ -50,8 +50,10 @@ export class JugadorsComponent {
       ).subscribe(observer);
     }
 
+
+
     onSubmit(): void {
-      const mutation: string = `mutation { postJugador(nom: "${this.nouJugador.nom}" email: "${this.nouJugador.email}" password: "${this.nouJugador.password}") { nom email password }}`;
+      const mutation: string = this.nouJugador.createPlayerSentence();
       const observer: Observer<any> = {
         next: (response: any) => {
           if (response.data != null) this.jugador = response.data.createJugador;

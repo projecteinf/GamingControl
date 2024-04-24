@@ -16,7 +16,7 @@ const typeDefinitions =  `
   }
    
   type Mutation {
-    postJugador(email: String!, nom: String!, password: String): Jugador!
+    createJugador(email: String!, nom: String!, password: String): Jugador!
   }
 `
 
@@ -66,7 +66,7 @@ const resolvers = {
             new GraphQLError(`Error code '${errorCodi}'.`))})}
   },
   Mutation: {
-    async postJugador(
+    async createJugador(
       parent: unknown,
       args: { email: string; nom: string, password: string},
       context: GraphQLContext
