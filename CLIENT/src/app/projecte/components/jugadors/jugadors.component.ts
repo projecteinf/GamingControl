@@ -2,7 +2,7 @@ import { Component } from '@angular/core';
 import { Jugador } from '../../_model/entitats/implementations/jugador';
 import { FormsModule } from '@angular/forms';
 import { GraphqlService } from '../../services/api.graphql';
-import { Observable, Observer, catchError, throwError } from 'rxjs';
+import { Observable, Observer, Subscription, catchError, throwError } from 'rxjs';
 import { CommonModule } from '@angular/common';
 
 @Component({
@@ -17,13 +17,14 @@ export class JugadorsComponent {
     password: string = '';
     jugador?: Jugador;
     jugadors: Jugador[] = [];
-    
-    constructor(private graphqlService: GraphqlService) { }
+    subsGetAllPlayers: Subscription | undefined;
 
+    constructor(private graphqlService: GraphqlService) { }
+    
 
     ngOnInit(): void {
       const query:string = "query { Jugador { nom email password }} ";
-      const observer: Observer<any> = {
+      const obsGetPlayers: Observer<any> = {
         next: (response: any) => {
           if (response.data != null) this.jugadors = response.data.Jugador;
           else {
@@ -40,14 +41,14 @@ export class JugadorsComponent {
         }
       };
       
-      this.graphqlService.query(query).pipe(
+      this.subsGetAllPlayers = this.graphqlService.query(query).pipe(
         catchError((error: any): Observable<any> => {
           // Handle the error here if it occurs before reaching observer.error
           console.error('An error occurred before reaching observer:', error);
           // Optionally, re-throw the error or return a default value
           return throwError(() => error);
         })
-      ).subscribe(observer);
+      ).subscribe(obsGetPlayers);
     }
 
 
