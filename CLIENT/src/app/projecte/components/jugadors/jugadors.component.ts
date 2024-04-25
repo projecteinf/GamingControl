@@ -17,18 +17,19 @@ export class JugadorsComponent {
     password: string = '';
     jugador?: Jugador;
     jugadors: Jugador[] = [];
-    subsGetAllPlayers: Subscription | undefined;
-
-    constructor(private graphqlService: GraphqlService) { }
+    obsGetPlayers: Observer<any> | undefined;
     
-
+    constructor(private graphqlService: GraphqlService) {
+      this._runInitializers();
+     }
+    
     ngOnInit(): void {
       this.getAllPlayers()
     }
 
-    private getAllPlayers(): void {
-      const query:string = Jugador.getSentence();
-      const obsGetPlayers: Observer<any> = {
+    private _runInitializers(): void {
+      
+      this.obsGetPlayers = {
         next: (response: any) => {
           if (response.data != null) this.jugadors = response.data.Jugador;
           else {
@@ -44,26 +45,30 @@ export class JugadorsComponent {
           console.log('Complete');
         }
       };
-      
-      this.subsGetAllPlayers = this.graphqlService.query(query).pipe(
+    }
+
+    private getAllPlayers(): void {
+      const query:string = Jugador.getSentence();
+      this.graphqlService.query(query).pipe(
         catchError((error: any): Observable<any> => {
           // Handle the error here if it occurs before reaching observer.error
           console.error('An error occurred before reaching observer:', error);
           // Optionally, re-throw the error or return a default value
           return throwError(() => error);
         })
-      ).subscribe(obsGetPlayers);
+      ).subscribe(this.obsGetPlayers);
     }
     
-    ngOnDestroy(): void {
-      this.subsGetAllPlayers?.unsubscribe();
-    }
+    
 
     onSubmit(): void {
       const mutation: string = this.nouJugador.createSentence();
       const observer: Observer<any> = {
         next: (response: any) => {
-          if (response.data != null) this.jugador = response.data.createJugador;
+          if (response.data != null) {
+            this.jugador = response.data.createJugador;
+            this.getAllPlayers();
+          }
           else {
             console.error('An error occurred:', response.errors[0].message);
             throwError(() => new Error(response.errors));
