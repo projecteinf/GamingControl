@@ -4,7 +4,8 @@
 
 [Creating and Using Angular Services: Best Practices and Examples](https://angulardive.com/blog/creating-and-using-angular-services-best-practices-and-examples/)
 
-# [Observables and observers](https://github.com/tc39/proposal-observable)
+# Productor i consumidor
+## [Observables and observers](https://github.com/tc39/proposal-observable)
 
 An Observable Allows Observers to Subscribe
 
@@ -24,6 +25,48 @@ Angular Basics: Comparing Data Producers in JavaScript
 Learn more about how to distinguish between Observables and other producers—Functions, Promises and Iterables.
 
 The subscribe() method executes the subscriber function, passing along the observer as an argument. The subscriber function then starts producing data and emitting values (or notifications) by executing the observer’s callbacks.
+
+## API
+API
+Observable
+
+An Observable represents a sequence of values which may be observed.
+
+```Javascript
+interface Observable {
+
+    constructor(subscriber : SubscriberFunction);
+
+    // Subscribes to the sequence with an observer
+    subscribe(observer : Observer) : Subscription;
+
+    // Subscribes to the sequence with callbacks
+    subscribe(onNext : Function,
+              onError? : Function,
+              onComplete? : Function) : Subscription;
+
+    // Returns itself
+    [Symbol.observable]() : Observable;
+
+    // Converts items to an Observable
+    static of(...items) : Observable;
+
+    // Converts an observable or iterable to an Observable
+    static from(observable) : Observable;
+
+}
+
+interface Subscription {
+
+    // Cancels the subscription
+    unsubscribe() : void;
+
+    // A boolean value indicating whether the subscription is closed
+    get closed() : Boolean;
+}
+
+function SubscriberFunction(observer: SubscriptionObserver) : (void => void)|Subscription;
+```
 
 
 # CLIENT
