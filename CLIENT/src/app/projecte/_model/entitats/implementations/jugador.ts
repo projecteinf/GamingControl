@@ -7,7 +7,11 @@ export class Jugador implements IJugador {
     password!: string;
     constructor() {   }
 
-    createPlayerSentence(): string {
+    createSentence(): string {
         return `mutation { createJugador(nom: "${this.nom}", email: "${this.email}", password: "${this.password}") { nom email password }}`;
+    }
+
+    static getSentence(): string {
+        return `query { Jugador { nom email password }}`;
     }
 }

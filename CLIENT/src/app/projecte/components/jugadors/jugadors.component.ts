@@ -23,7 +23,11 @@ export class JugadorsComponent {
     
 
     ngOnInit(): void {
-      const query:string = "query { Jugador { nom email password }} ";
+      this.getAllPlayers()
+    }
+
+    private getAllPlayers(): void {
+      const query:string = Jugador.getSentence();
       const obsGetPlayers: Observer<any> = {
         next: (response: any) => {
           if (response.data != null) this.jugadors = response.data.Jugador;
@@ -50,11 +54,13 @@ export class JugadorsComponent {
         })
       ).subscribe(obsGetPlayers);
     }
-
-
+    
+    ngOnDestroy(): void {
+      this.subsGetAllPlayers?.unsubscribe();
+    }
 
     onSubmit(): void {
-      const mutation: string = this.nouJugador.createPlayerSentence();
+      const mutation: string = this.nouJugador.createSentence();
       const observer: Observer<any> = {
         next: (response: any) => {
           if (response.data != null) this.jugador = response.data.createJugador;
