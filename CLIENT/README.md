@@ -4,6 +4,28 @@
 
 [Creating and Using Angular Services: Best Practices and Examples](https://angulardive.com/blog/creating-and-using-angular-services-best-practices-and-examples/)
 
+# [Observables and observers](https://github.com/tc39/proposal-observable)
+
+An Observable Allows Observers to Subscribe
+
+Creating an observable instance is not enough to start producing and sending data—we also need to subscribe to the observable.
+
+The observable needs to know who to send data to. We let an observable know that an observer is interested in receiving data by subscribing to it.
+
+The observable type has a subscribe() method that accepts an observer as a parameter.
+
+```JavaScript
+const subscription = myObservable$.subscribe(observer);
+```
+
+The subscribe() method begins sending values to the supplied observer object by executing the observable object’s subscriber function.
+Angular Basics: Comparing Data Producers in JavaScript
+
+Learn more about how to distinguish between Observables and other producers—Functions, Promises and Iterables.
+
+The subscribe() method executes the subscriber function, passing along the observer as an argument. The subscriber function then starts producing data and emitting values (or notifications) by executing the observer’s callbacks.
+
+
 # CLIENT
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 17.3.4.
