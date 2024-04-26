@@ -1,0 +1,19 @@
+datasource db {
+  provider = "sqlserver"
+  url = env("DATABASE_CONNECTION_MSSQL")
+}
+ 
+generator client {
+  provider = "prisma-client-js"
+}
+ 
+model Error {
+  uid String @id @default(uuid())
+  code Decimal
+  date DateTime
+  category  String
+  message String
+  name String
+  url String
+  user String
+}

@@ -3,6 +3,11 @@ API/node_modules
 API/src/prisma/migrations
 API/src/prisma/dev.db
 API/src/prisma/dev.db-journal
+APIERROR/src/.env
+APIERROR/node_modules
+APIERROR/src/prisma/migrations
+APIERROR/src/prisma/dev.db
+APIERROR/src/prisma/dev.db-journal
 CLIENT/node_modules/
 
 
@@ -45,3 +50,4 @@ CLIENT/typings
 # System files
 .DS_Store
 Thumbs.db
+APIERROR/src/.env

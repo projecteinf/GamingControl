@@ -4,6 +4,7 @@ import { FormsModule } from '@angular/forms';
 import { GraphqlService } from '../../services/api.graphql';
 import { Observable, Observer, Subscription, catchError, throwError } from 'rxjs';
 import { CommonModule } from '@angular/common';
+import { ErrorAPI } from '../../_model/entitats/implementations/error';
 
 @Component({
   selector: 'app-jugadors',
@@ -70,7 +71,7 @@ export class JugadorsComponent {
         },
         error: (error: any) => {
           console.error('An error occurred:', error);
-          throwError(()=> new Error('Something went wrong'));
+          throwError(()=> new ErrorAPI(500,'Internal Server Error', 'Something went wrong', 'http://localhost:4200/jugadors', 'Not logged in'));
         },
         complete: () => {
           console.log('Complete');
@@ -86,7 +87,7 @@ export class JugadorsComponent {
           // Handle the error here if it occurs before reaching observer.error
           console.error('An error occurred before reaching observer:', error);
           // Optionally, re-throw the error or return a default value
-          return throwError(() => error);
+          return throwError(()=> new ErrorAPI(500,'Internal Server Error', error.message , error.url, 'Not logged in'));
         })
       ).subscribe(this.obsGetPlayers);
     }
