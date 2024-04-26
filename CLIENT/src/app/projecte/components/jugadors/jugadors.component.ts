@@ -18,17 +18,24 @@ export class JugadorsComponent {
     jugador?: Jugador;
     jugadors: Jugador[] = [];
     obsGetPlayers: Observer<any> | undefined;
+    obsCreatePlayer: Observer<any> | undefined;
     
-    constructor(private graphqlService: GraphqlService) {
-      this._runInitializers();
-     }
+    constructor(private graphqlService: GraphqlService) { this._runInitializers(); }
     
-    ngOnInit(): void {
-      this.getAllPlayers()
+    ngOnInit(): void { this._getAllPlayers(); }
+
+    onSubmit(): void {
+      const mutation: string = this.nouJugador.createSentence();
+      this._createPlayer(mutation);
     }
 
     private _runInitializers(): void {
-      
+      // Initialize Observers
+      this._initObsGetPlayers();
+      this._initObsCreatePlayer();
+    }
+
+    private _initObsGetPlayers(): void {
       this.obsGetPlayers = {
         next: (response: any) => {
           if (response.data != null) this.jugadors = response.data.Jugador;
@@ -47,27 +54,14 @@ export class JugadorsComponent {
       };
     }
 
-    private getAllPlayers(): void {
-      const query:string = Jugador.getSentence();
-      this.graphqlService.query(query).pipe(
-        catchError((error: any): Observable<any> => {
-          // Handle the error here if it occurs before reaching observer.error
-          console.error('An error occurred before reaching observer:', error);
-          // Optionally, re-throw the error or return a default value
-          return throwError(() => error);
-        })
-      ).subscribe(this.obsGetPlayers);
-    }
-    
-    
-
-    onSubmit(): void {
-      const mutation: string = this.nouJugador.createSentence();
-      const observer: Observer<any> = {
+    private _initObsCreatePlayer(): void {
+      this.obsCreatePlayer = {
         next: (response: any) => {
           if (response.data != null) {
             this.jugador = response.data.createJugador;
-            this.getAllPlayers();
+            this.nouJugador = new Jugador();
+            this.password = ""
+            this._getAllPlayers();
           }
           else {
             console.error('An error occurred:', response.errors[0].message);
@@ -82,7 +76,23 @@ export class JugadorsComponent {
           console.log('Complete');
         }
       };
-      
+    }
+
+    private _getAllPlayers(): void {
+      // Subscription to get all players
+      const query:string = Jugador.getSentence();
+      this.graphqlService.query(query).pipe(
+        catchError((error: any): Observable<any> => {
+          // Handle the error here if it occurs before reaching observer.error
+          console.error('An error occurred before reaching observer:', error);
+          // Optionally, re-throw the error or return a default value
+          return throwError(() => error);
+        })
+      ).subscribe(this.obsGetPlayers);
+    }
+    
+    private _createPlayer(mutation: string): void {
+      // Subscription to create a player
       this.graphqlService.query(mutation).pipe(
         catchError((error: any): Observable<any> => {
           // Handle the error here if it occurs before reaching observer.error
@@ -90,8 +100,7 @@ export class JugadorsComponent {
           // Optionally, re-throw the error or return a default value
           return throwError(() => error);
         })
-      ).subscribe(observer);
-
+      ).subscribe(this.obsCreatePlayer);
     }
 
   }
