@@ -1,6 +1,6 @@
-import { IErrorGaming } from "../interfaces/error";
+import { IErrorAPI } from "../interfaces/errorApi";
 
-export interface ErrorGaming extends IErrorGaming {
+export interface ErrorGaming extends IErrorAPI {
     code: number;
     date: Date;
     title: string;

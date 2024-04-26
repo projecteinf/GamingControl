@@ -1,4 +1,4 @@
-export interface IErrorGaming extends Error {
+export interface IErrorAPI extends Error {
     code: number;
     date: Date;
     title: string;
