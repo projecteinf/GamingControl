@@ -10,4 +10,3 @@ export function createContext(): GraphQLContext {
   return { prisma }
 }
 
-
