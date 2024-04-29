@@ -7,7 +7,7 @@ generator client {
   provider = "prisma-client-js"
 }
  
-model Error {
+model ErrorApp {
   uid String @id @default(uuid())
   code Decimal
   date DateTime
