@@ -69,7 +69,7 @@ const resolvers = {
       parent: unknown,
       args: { email: string; nom: string, password: string},
       context: GraphQLContext
-    ) 
+    ) : Promise<any>
     {
       const nouJugador = await context.prisma.jugador.create({
         data: {

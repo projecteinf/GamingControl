@@ -13,7 +13,6 @@ model ErrorApp {
   date DateTime
   category  String
   message String
-  name String
   url String
   user String
 }
